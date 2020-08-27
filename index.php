@@ -27,7 +27,7 @@ include('layout/header.php');
         $query = "SELECT * FROM $table;";
         $ps = $conection->query($query);
         $res = $ps->fetchAll(PDO::FETCH_OBJ);
-        print_r($res);
+        //print_r($res);
         foreach ($res as $row) {
         ?>
             <tr>

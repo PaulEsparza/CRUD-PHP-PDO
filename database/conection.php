@@ -10,7 +10,7 @@ $nameBD = "tblTasks";
 $table = "tasks";
 
 try {
-    $conection = new PDO('mysql:host='.$localhost.';dbname='.$nameBD,$user,$password);
+    $conection = new PDO('mysql:host='.$localhost.';dbname='.$nameBD,$user,$password,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 } catch(Exception $e){
     echo "Error: ".$e->getMessage();
 }
