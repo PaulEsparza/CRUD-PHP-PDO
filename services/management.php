@@ -17,6 +17,23 @@ if(isset($_POST['saveTask'])){
     header("Location:../index.php");
 }
 
+if(isset($_POST['updateTask'])){
+    $id = $_GET['id'];
+    $responsable = $_POST['responsable'];
+    $description = $_POST['description'];
+    $query = "UPDATE $table SET responsable = ?, description = ? WHERE id = ?;";
+    $ps = $conection->prepare($query);
+    $res = $ps->execute([$responsable, $description, $id]);
+    if(!$res){
+        die("error");
+    }
+
+    $_SESSION['message'] = "Task updated succesfully";
+    $_SESSION['message_type'] = "success";
+
+    header("Location:../index.php");
+}
+
 if(isset($_POST['deleteTask'])){
     $id = $_GET['id'];
     $query = "DELETE FROM $table WHERE id = ?";
