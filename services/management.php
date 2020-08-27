@@ -17,4 +17,19 @@ if(isset($_POST['saveTask'])){
     header("Location:../index.php");
 }
 
+if(isset($_POST['deleteTask'])){
+    $id = $_GET['id'];
+    $query = "DELETE FROM $table WHERE id = ?";
+    $ps = $conection->prepare(($query));
+    $res = $ps->execute([$id]);
+    if($res == 0){
+        die("error");
+    }
+
+    $_SESSION['message'] = "Task removed succesfully";
+    $_SESSION['message_type'] = "warning";
+
+    header("Location:../index.php");
+}
+
 ?>
